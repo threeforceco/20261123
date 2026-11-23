@@ -1,0 +1,3 @@
+[build]
+  command = "mkdir -p dist && cp 3force.index dist/index.html"
+  publish = "dist"
