@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スリーフォース株式会社 | For your comfortable life - 不動産管理・修繕・清掃・民泊代行</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans JP & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"Inter"', 'sans-serif'],
+            mono: ['"Inter"', 'monospace'],
+          },
+          colors: {
+            tf: {
+              navy: '#0f2942',
+              navyDark: '#091a2b',
+              teal: '#1d6f8a',
+              tealLight: '#e6f2f5',
+              ivory: '#faf9f6',
+              gold: '#c59b27'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      background-color: #faf9f6;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+    .calendar-scroll::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    .calendar-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .calendar-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .calendar-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .fade-in {
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Top Tagline Bar -->
+  <div class="bg-[#0f2942] text-slate-200 text-xs py-1.5 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <span class="tracking-widest font-medium italic text-sky-200">For your comfortable life</span>
+      <span class="hidden sm:inline text-slate-300">東京都江東区豊洲3-4-2 ｜ 東京・富士河口湖エリア対応</span>
+    </div>
+  </div>
+
+  <!-- Global Navigation Header (Exact 5 Menu Items) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Brand Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0f2942] to-[#1d6f8a] flex flex-col items-center justify-center text-white shadow-md border border-white/10">
+            <span class="text-sm font-extrabold tracking-tighter leading-none">FFF</span>
+            <span class="text-[8px] tracking-widest text-sky-200 mt-0.5">CORP</span>
+          </div>
+          <div>
+            <span class="block text-[11px] font-semibold text-[#1d6f8a] tracking-wider leading-none mb-1">For your comfortable life</span>
+            <span class="block text-lg sm:text-xl font-bold tracking-tight text-[#0f2942] leading-none">スリーフォース株式会社</span>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation (5 Requested Menu Items) -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <button onclick="navigateTo('home')" data-nav="home" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-[#1d6f8a] hover:bg-slate-50">
+            ホーム
+          </button>
+          <button onclick="navigateTo('contact')" data-nav="contact" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-[#1d6f8a] hover:bg-slate-50">
+            お問い合わせ
+          </button>
+          <button onclick="navigateTo('notice')" data-nav="notice" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-[#1d6f8a] hover:bg-slate-50">
+            電子公告
+          </button>
+          <button onclick="navigateTo('works')" data-nav="works" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-[#1d6f8a] hover:bg-slate-50">
+            実績
+          </button>
+          <div class="pl-3 ml-2 border-l border-slate-200">
+            <button onclick="navigateTo('schedule')" data-nav="schedule" class="nav-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all bg-[#0f2942] text-white hover:bg-[#1d6f8a] shadow-sm flex items-center gap-2">
+              <i class="fa-regular fa-calendar-check text-emerald-400"></i>
+              <span>清掃スタッフ出勤予定</span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-[#0f2942] hover:bg-slate-100 focus:outline-none" aria-label="メニューを開く">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer (5 Menu Items) -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-5 space-y-1.5 shadow-lg">
+      <button onclick="navigateTo('home'); toggleMobileMenu()" data-nav="home" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">ホーム</button>
+      <button onclick="navigateTo('contact'); toggleMobileMenu()" data-nav="contact" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">お問い合わせ</button>
+      <button onclick="navigateTo('notice'); toggleMobileMenu()" data-nav="notice" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">電子公告</button>
+      <button onclick="navigateTo('works'); toggleMobileMenu()" data-nav="works" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">実績</button>
+      <button onclick="navigateTo('schedule'); toggleMobileMenu()" data-nav="schedule" class="mobile-nav-btn w-full text-left px-4 py-3.5 rounded-xl text-sm font-bold bg-[#0f2942] text-white flex items-center gap-2 mt-2">
+        <i class="fa-regular fa-calendar-check text-emerald-400"></i>
+        <span>清掃スタッフ出勤予定</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow">
+
+    <!-- ==================== 1. HOME PAGE (ホーム) ==================== -->
+    <section id="page-home" class="page-section fade-in">
+      <!-- Hero Section -->
+      <div class="relative bg-gradient-to-br from-[#0f2942] via-[#133859] to-[#1d6f8a] text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-sky-100 text-xs font-semibold tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>For your comfortable life — 快適な暮らしと資産価値を支える</span>
+              </div>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+                不動産管理から修繕・清掃、<br>
+                民泊運営まで<span class="text-sky-200">一貫サポート。</span>
+              </h1>
+              <p class="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl">
+                スリーフォース株式会社は「For your comfortable life」を理念に掲げ、東京都内（江東区豊洲拠点）および富士河口湖を中心としたリゾートエリアにて、不動産管理・共用部修繕・物件調査・清掃＆民泊代行を展開しております。
+              </p>
+              <div class="flex flex-wrap gap-4 pt-2">
+                <button onclick="navigateTo('schedule')" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm sm:text-base transition-all shadow-lg flex items-center gap-2">
+                  <i class="fa-regular fa-calendar-check"></i>
+                  <span>清掃スタッフ出勤予定・Web予約</span>
+                </button>
+                <button onclick="navigateTo('contact')" class="px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white border border-white/30 font-semibold text-sm sm:text-base transition-all">
+                  お問い合わせ・ご相談
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Summary Card -->
+            <div class="lg:col-span-5">
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
+                <div class="border-b border-white/15 pb-4">
+                  <p class="text-xs text-sky-200 uppercase tracking-widest font-semibold">THREE FORCE SERVICE NETWORK</p>
+                  <h2 class="text-xl font-bold text-white mt-1">都市とリゾートをつなぐ管理体制</h2>
+                </div>
+                <div class="space-y-4 text-sm">
+                  <div class="bg-[#0f2942]/60 p-4 rounded-xl border border-white/10 flex items-start gap-3.5">
+                    <div class="w-9 h-9 rounded-lg bg-sky-500/20 text-sky-200 flex items-center justify-center shrink-0 mt-0.5">
+                      <i class="fa-solid fa-city"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-white">東京都内・湾岸エリア（豊洲拠点）</h3>
+                      <p class="text-xs text-slate-300 mt-1 leading-relaxed">江東区豊洲を拠点に、賃貸物件管理・マンション共用部修繕・物件調査・原状回復清掃に迅速対応。</p>
+                    </div>
+                  </div>
+                  <div class="bg-[#0f2942]/60 p-4 rounded-xl border border-white/10 flex items-start gap-3.5">
+                    <div class="w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
+                      <i class="fa-solid fa-mountain-sun"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-white">富士河口湖リゾートエリア（常駐スタッフ対応）</h3>
+                      <p class="text-xs text-slate-300 mt-1 leading-relaxed">別荘・民泊・宿泊施設のチェックアウト清掃および運営代行を現地常駐体制でサポート。対応エリア拡大中。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Core Business Areas (事業内容) -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-[#1d6f8a] font-bold text-xs tracking-widest uppercase">OUR SERVICES</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-[#0f2942] mt-2">スリーフォースの4つの事業領域</h2>
+          <p class="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed">
+            オーナー様・入居者様・ゲスト様すべての「快適な暮らし（For your comfortable life）」を実現するため、専門性の高い4つのサービスを提供しています。
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-[#e6f2f5] text-[#1d6f8a] flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-building-user"></i>
+                </div>
+                <span class="text-xs font-bold text-[#1d6f8a] tracking-wider">SERVICE 01</span>
+              </div>
+              <h3 class="text-xl font-bold text-[#0f2942] mb-3">不動産管理業務</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                オーナー様の大切な賃貸不動産の収益性と資産価値を守るため、入居者対応から建物維持まで総合的に代行いたします。
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>入居者様からの問い合わせ・クレーム一次対応、設備修繕手配</li>
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>家賃管理・滞納督促フォロー、契約更新・解約精算業務</li>
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>定期現地巡回点検および空室時の原状回復・美観維持管理</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-[#e6f2f5] text-[#0f2942] flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <span class="text-xs font-bold text-[#1d6f8a] tracking-wider">SERVICE 02</span>
+              </div>
+              <h3 class="text-xl font-bold text-[#0f2942] mb-3">マンション管理・共用部の修繕補修</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                分譲・賃貸マンションの長期的な資産価値向上に向け、エントランスや廊下・外構など共用部の適切な修繕・補修をご提案します。
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>エントランス・内廊下・階段等の内装補修および美観リフレッシュ</li>
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>照明LED化、共用設備の不具合修繕、防水・塗装メンテナンス</li>
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>日常清掃と連動した予防保全による修繕コストの最適化</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-[#e6f2f5] text-[#1d6f8a] flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-magnifying-glass-location"></i>
+                </div>
+                <span class="text-xs font-bold text-[#1d6f8a] tracking-wider">SERVICE 03</span>
+              </div>
+              <h3 class="text-xl font-bold text-[#0f2942] mb-3">不動産物件調査</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                購入検討中の投資用不動産や事業用物件について、現地での詳細な実地調査を行い、客観的なレポートと運用アドバイスを提供します。
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>建物外観・共用部・設備状況の現地インスペクション写真報告</li>
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>周辺環境・管理状態の確認および購入後の修繕リスク診断</li>
+                <li><i class="fa-solid fa-check text-[#1d6f8a] mr-2"></i>購入後の管理・清掃・民泊転用を見据えた実践的アドバイザリー</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-sparkles"></i>
+                </div>
+                <span class="text-xs font-bold text-emerald-700 tracking-wider">SERVICE 04</span>
+              </div>
+              <h3 class="text-xl font-bold text-[#0f2942] mb-3">清掃業務・民泊代行</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                投資用マンション・ホテル・民泊・貸別荘の専門清掃から、民泊施設の運営代行までワンストップで対応いたします。
+              </p>
+              <ul class="space-y-1.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>東京都内・富士河口湖エリアの民泊・ホテル・貸別荘清掃</li>
+                <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>リネン交換・アメニティ補充・チェックアウト後の完了写真報告</li>
+                <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Web出勤予定システムによるスタッフ空き枠のリアルタイム予約手配</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Profile (会社概要 - Actual Data from fffcorp.jimdofree.com) -->
+      <div class="bg-white border-t border-slate-200/80 py-16 sm:py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <span class="text-[#1d6f8a] font-bold text-xs tracking-widest uppercase">COMPANY PROFILE</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-[#0f2942] mt-2">会社概要</h2>
+          </div>
+
+          <div class="bg-[#faf9f6] rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <dl class="divide-y divide-slate-200 text-sm sm:text-base">
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2">
+                <dt class="font-bold text-[#0f2942]">商号</dt>
+                <dd class="sm:col-span-2 text-slate-800 font-medium">スリーフォース株式会社（Three Force Co., Ltd.）</dd>
+              </div>
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2 bg-white">
+                <dt class="font-bold text-[#0f2942]">企業理念</dt>
+                <dd class="sm:col-span-2 text-[#1d6f8a] font-semibold italic">For your comfortable life</dd>
+              </div>
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2">
+                <dt class="font-bold text-[#0f2942]">設立</dt>
+                <dd class="sm:col-span-2 text-slate-800">2023年6月</dd>
+              </div>
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2 bg-white">
+                <dt class="font-bold text-[#0f2942]">代表取締役</dt>
+                <dd class="sm:col-span-2 text-slate-800">福岡 かほり</dd>
+              </div>
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2">
+                <dt class="font-bold text-[#0f2942]">本社所在地</dt>
+                <dd class="sm:col-span-2 text-slate-800">〒135-0061 東京都江東区豊洲3-4-2</dd>
+              </div>
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2 bg-white">
+                <dt class="font-bold text-[#0f2942]">事業内容</dt>
+                <dd class="sm:col-span-2 text-slate-800 leading-relaxed">
+                  ・不動産管理業務<br>
+                  ・マンション管理・共用部の修繕補修<br>
+                  ・不動産物件調査<br>
+                  ・清掃業務・民泊代行
+                </dd>
+              </div>
+              <div class="grid sm:grid-cols-3 px-6 py-4 sm:py-5 gap-2">
+                <dt class="font-bold text-[#0f2942]">主な対応エリア</dt>
+                <dd class="sm:col-span-2 text-slate-800">東京都内（江東区豊洲拠点）、山梨県富士河口湖町を中心としたリゾートエリア（順次拡大中）</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. WORKS PAGE (実績) ==================== -->
+    <section id="page-works" class="page-section hidden fade-in">
+      <div class="bg-[#0f2942] text-white py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-sky-300 font-bold text-xs tracking-widest uppercase">TRACK RECORD</span>
+          <h1 class="text-2xl sm:text-4xl font-bold mt-2">業務・管理実績</h1>
+          <p class="text-slate-300 mt-3 text-sm sm:text-base max-w-2xl">
+            東京都内（江東区豊洲・湾岸・都心部）および富士河口湖リゾートエリアにおける、不動産管理・共用部修繕・物件調査・清掃＆民泊代行の実績をご紹介いたします。
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <button onclick="filterWorks('all')" data-filter="all" class="work-filter-btn px-4 py-2 rounded-xl text-sm font-bold bg-[#0f2942] text-white shadow-sm transition-all">
+            すべて表示
+          </button>
+          <button onclick="filterWorks('management')" data-filter="management" class="work-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all">
+            不動産管理業務
+          </button>
+          <button onclick="filterWorks('repair')" data-filter="repair" class="work-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all">
+            マンション共用部修繕
+          </button>
+          <button onclick="filterWorks('survey')" data-filter="survey" class="work-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all">
+            不動産物件調査
+          </button>
+          <button onclick="filterWorks('cleaning')" data-filter="cleaning" class="work-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all">
+            清掃業務・民泊代行
+          </button>
+        </div>
+
+        <!-- Works Grid -->
+        <div id="works-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. ELECTRONIC PUBLIC NOTICE (電子公告) ==================== -->
+    <section id="page-notice" class="page-section hidden fade-in">
+      <div class="bg-[#0f2942] text-white py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-sky-300 font-bold text-xs tracking-widest uppercase">PUBLIC NOTICE</span>
+          <h1 class="text-2xl sm:text-4xl font-bold mt-2">電子公告</h1>
+          <p class="text-slate-300 mt-3 text-sm sm:text-base max-w-2xl">
+            会社法第440条第4項および当社定款の規定に基づき、決算公告および法定公告を掲載しております。
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+        <div class="bg-[#e6f2f5] border border-[#1d6f8a]/30 rounded-2xl p-5 flex items-start gap-3.5 text-sm text-[#0f2942]">
+          <i class="fa-solid fa-circle-info text-[#1d6f8a] text-lg mt-0.5"></i>
+          <div>
+            <p class="font-bold">電子公告の閲覧について</p>
+            <p class="mt-1 text-slate-700">2023年6月設立以降の決算公告を掲載しております。「公告書面を表示」をクリックすると、貸借対照表要旨などの公式公告書面をご確認いただけます。</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
+            <h2 class="font-bold text-[#0f2942]">法定公告・決算公告一覧</h2>
+            <span class="text-xs text-slate-500">スリーフォース株式会社（東京都江東区豊洲3-4-2）</span>
+          </div>
+          <div id="notice-list" class="divide-y divide-slate-200">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. CONTACT PAGE (お問い合わせ) ==================== -->
+    <section id="page-contact" class="page-section hidden fade-in">
+      <div class="bg-[#0f2942] text-white py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-sky-300 font-bold text-xs tracking-widest uppercase">CONTACT US</span>
+          <h1 class="text-2xl sm:text-4xl font-bold mt-2">お問い合わせ</h1>
+          <p class="text-slate-300 mt-3 text-sm sm:text-base max-w-2xl">
+            不動産管理、マンション共用部修繕、不動産物件調査、清掃業務・民泊代行（東京／富士河口湖エリア）のご相談・お見積りはこちらからお気軽にお問い合わせください。
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid md:grid-cols-3 gap-6 mb-10">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="text-[#1d6f8a] text-xl mb-2"><i class="fa-solid fa-location-dot"></i></div>
+            <p class="text-xs font-bold text-slate-500">本社所在地</p>
+            <p class="text-sm font-bold text-[#0f2942] mt-1">東京都江東区豊洲3-4-2</p>
+            <p class="text-xs text-slate-500 mt-1">スリーフォース株式会社</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="text-emerald-600 text-xl mb-2"><i class="fa-solid fa-map-location-dot"></i></div>
+            <p class="text-xs font-bold text-slate-500">対応エリア</p>
+            <p class="text-sm font-bold text-[#0f2942] mt-1">東京都内 ／ 富士河口湖</p>
+            <p class="text-xs text-slate-500 mt-1">リゾートエリア常駐スタッフ対応</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="text-[#0f2942] text-xl mb-2"><i class="fa-regular fa-calendar-check"></i></div>
+            <p class="text-xs font-bold text-slate-500">ご契約オーナー様・法人様</p>
+            <p class="text-sm font-bold text-[#0f2942] mt-1">清掃スタッフWeb予約窓口</p>
+            <button onclick="navigateTo('schedule')" class="text-xs font-bold text-emerald-700 hover:underline mt-1">出勤予定ページへ →</button>
+          </div>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div id="contact-form-card" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-10">
+          <h2 class="text-xl font-bold text-[#0f2942] mb-6 pb-4 border-b border-slate-100">お問い合わせフォーム</h2>
+          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1.5">お問い合わせ項目 <span class="text-red-500">*</span></label>
+                <select required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm bg-white">
+                  <option value="management">不動産管理業務のご相談</option>
+                  <option value="repair">マンション管理・共用部の修繕補修</option>
+                  <option value="survey">不動産物件調査のご依頼</option>
+                  <option value="cleaning">清掃業務・民泊代行（東京／富士河口湖エリア）</option>
+                  <option value="account">Web予約システム用 顧客ID発行のご希望</option>
+                  <option value="other">その他のお問い合わせ</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1.5">貴社名 / 物件・施設名</label>
+                <input type="text" placeholder="例：株式会社〇〇 / 河口湖ヴィラ" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm">
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1.5">お名前 <span class="text-red-500">*</span></label>
+                <input type="text" required placeholder="例：豊洲 太郎" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1.5">メールアドレス <span class="text-red-500">*</span></label>
+                <input type="email" required placeholder="example@domain.co.jp" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">お電話番号</label>
+              <input type="tel" placeholder="例：03-0000-0000" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm">
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">お問い合わせ内容 <span class="text-red-500">*</span></label>
+              <textarea rows="5" required placeholder="物件の所在地（東京都内・富士河口湖エリア等）やご希望の業務内容をご記入ください。" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm"></textarea>
+            </div>
+
+            <div class="pt-2">
+              <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#0f2942] hover:bg-[#1d6f8a] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>送信する</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Submission Success Card -->
+        <div id="contact-success-card" class="hidden bg-white rounded-2xl border border-emerald-200 shadow-sm p-8 sm:p-12 text-center space-y-4">
+          <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-[#0f2942]">お問い合わせを受け付けました</h3>
+          <p class="text-slate-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+            スリーフォース株式会社へのお問い合わせ誠にありがとうございます。内容を確認のうえ、担当者より折り返しご連絡いたします。
+          </p>
+          <div class="pt-4">
+            <button onclick="resetContactForm()" class="px-6 py-2.5 rounded-xl bg-[#0f2942] text-white text-sm font-bold hover:bg-[#1d6f8a]">
+              別のお問い合わせを送る
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. STAFF SCHEDULE & RESERVATION SYSTEM (清掃スタッフ出勤予定) ==================== -->
+    <section id="page-schedule" class="page-section hidden fade-in">
+      <!-- Top Header Banner -->
+      <div class="bg-[#0f2942] text-white py-8 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">SHIFT & BOOKING PORTAL</span>
+              <span id="db-sync-badge" class="text-xs text-sky-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> ローカルストレージ自動保存対応
+              </span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-bold mt-1.5">清掃スタッフ出勤予定・Web予約管理システム</h1>
+          </div>
+
+          <!-- Logged-in User Status Pill -->
+          <div id="user-header-status" class="hidden flex items-center gap-3 bg-white/10 border border-white/15 px-4 py-2.5 rounded-xl">
+            <div id="user-role-avatar" class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm"></div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="user-display-name" class="text-sm font-bold text-white"></span>
+                <span id="user-role-badge" class="text-[11px] font-bold px-2 py-0.5 rounded-full"></span>
+              </div>
+              <p id="user-id-sub" class="text-xs text-sky-200"></p>
+            </div>
+            <button onclick="handleLogout()" class="ml-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-red-600 text-white text-xs font-bold transition-colors">
+              ログアウト
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== LOGIN VIEW ===== -->
+      <div id="schedule-login-view" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <!-- Login Form -->
+          <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-md p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-[#0f2942] text-emerald-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <div>
+                <h2 class="text-lg font-bold text-[#0f2942]">システムログイン</h2>
+                <p class="text-xs text-slate-500">清掃スタッフ・顧客・管理者 共通認証窓口</p>
+              </div>
+            </div>
+
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">ログインID</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-regular fa-user"></i></span>
+                  <input id="login-id-input" type="text" required placeholder="例：staff01 / client01 / admin" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm font-mono">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">パスワード</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-key"></i></span>
+                  <input id="login-pw-input" type="password" required placeholder="パスワードを入力" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#1d6f8a] focus:border-[#1d6f8a] outline-none text-sm font-mono">
+                </div>
+              </div>
+
+              <div id="login-error-msg" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
+                IDまたはパスワードが一致しません。右側の「テスト用アカウント一覧」をご確認ください。
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl bg-[#0f2942] hover:bg-[#1d6f8a] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>ログインする</span>
+              </button>
+            </form>
+
+            <!-- Workflow Guide -->
+            <div class="mt-6 pt-5 border-t border-slate-100 space-y-2.5">
+              <p class="text-xs font-bold text-[#0f2942]">ステータス遷移と操作権限ルール</p>
+              <div class="flex items-center gap-2 text-xs text-slate-600">
+                <span class="w-3.5 h-3.5 rounded bg-[#16a34a] shrink-0"></span>
+                <span><strong>予約可能（グリーン）：</strong>清掃スタッフが空き時間を登録</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-600">
+                <span class="w-3.5 h-3.5 rounded bg-[#dc2626] shrink-0"></span>
+                <span><strong>予約済み（レッド）：</strong>顧客が予約（スタッフ変更不可）</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-600">
+                <span class="w-3.5 h-3.5 rounded bg-[#0f2942] border border-amber-400 shrink-0"></span>
+                <span><strong>確定（ネイビー/ゴールド）：</strong>管理者が確定（管理者のみ変更可）</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo Accounts Quick-Fill Panel -->
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+            <div>
+              <span class="px-2.5 py-1 rounded-md bg-[#e6f2f5] text-[#1d6f8a] text-xs font-bold">テスト用アカウント一覧（ワンクリック入力）</span>
+              <h3 class="text-lg font-bold text-[#0f2942] mt-2">3つのロール（清掃スタッフ・顧客・管理者）動作確認</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                各アカウントカードをクリックするとID・PWが自動入力されそのままログインします。東京（豊洲）および富士河口湖エリアのスタッフ・顧客で動作をお試しいただけます。
+              </p>
+            </div>
+
+            <!-- Staff Accounts -->
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-xs font-bold text-green-700 uppercase tracking-wider">
+                <i class="fa-solid fa-user-check"></i>
+                <span>1. 清掃スタッフアカウント（空き時間をグリーン「予約可能」に登録）</span>
+              </div>
+              <div class="grid sm:grid-cols-3 gap-2.5">
+                <button onclick="quickLogin('staff01', 'pass1234')" class="text-left p-3 rounded-xl border border-green-200 bg-green-50/60 hover:bg-green-100/80 transition-all group">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm text-slate-900">佐藤 健太</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket text-green-600 opacity-60 group-hover:opacity-100"></i>
+                  </div>
+                  <p class="text-[11px] font-semibold text-green-800 mt-0.5">東京・豊洲エリア担当</p>
+                  <p class="text-[11px] font-mono text-slate-600 mt-1">ID: staff01 / PW: pass1234</p>
+                </button>
+                <button onclick="quickLogin('staff02', 'pass1234')" class="text-left p-3 rounded-xl border border-green-200 bg-green-50/60 hover:bg-green-100/80 transition-all group">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm text-slate-900">鈴木 美咲</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket text-green-600 opacity-60 group-hover:opacity-100"></i>
+                  </div>
+                  <p class="text-[11px] font-semibold text-green-800 mt-0.5">東京・湾岸エリア担当</p>
+                  <p class="text-[11px] font-mono text-slate-600 mt-1">ID: staff02 / PW: pass1234</p>
+                </button>
+                <button onclick="quickLogin('staff03', 'pass1234')" class="text-left p-3 rounded-xl border border-green-200 bg-green-50/60 hover:bg-green-100/80 transition-all group">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm text-slate-900">高橋 誠</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket text-green-600 opacity-60 group-hover:opacity-100"></i>
+                  </div>
+                  <p class="text-[11px] font-semibold text-emerald-800 mt-0.5">富士河口湖リゾート担当</p>
+                  <p class="text-[11px] font-mono text-slate-600 mt-1">ID: staff03 / PW: pass1234</p>
+                </button>
+              </div>
+            </div>
+
+            <!-- Client Accounts -->
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-xs font-bold text-red-600 uppercase tracking-wider">
+                <i class="fa-solid fa-building-user"></i>
+                <span>2. 顧客・物件オーナーアカウント（グリーン枠を予約しレッド「予約済み」へ変更）</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-2.5">
+                <button onclick="quickLogin('client01', 'client1234')" class="text-left p-3.5 rounded-xl border border-red-200 bg-red-50/50 hover:bg-red-100/70 transition-all group">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm text-slate-900">豊洲レジデンス管理様</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket text-red-600 opacity-60 group-hover:opacity-100"></i>
+                  </div>
+                  <p class="text-[11px] text-red-800 font-semibold mt-0.5">東京都江東区豊洲 賃貸・民泊オーナー</p>
+                  <p class="text-[11px] font-mono text-slate-600 mt-1">ID: client01 / PW: client1234</p>
+                </button>
+                <button onclick="quickLogin('client02', 'client1234')" class="text-left p-3.5 rounded-xl border border-red-200 bg-red-50/50 hover:bg-red-100/70 transition-all group">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm text-slate-900">河口湖ヴィラオーナー様</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket text-red-600 opacity-60 group-hover:opacity-100"></i>
+                  </div>
+                  <p class="text-[11px] text-red-800 font-semibold mt-0.5">山梨県富士河口湖町 貸別荘・民泊施設</p>
+                  <p class="text-[11px] font-mono text-slate-600 mt-1">ID: client02 / PW: client1234</p>
+                </button>
+              </div>
+            </div>
+
+            <!-- Admin Account -->
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2 text-xs font-bold text-[#0f2942] uppercase tracking-wider">
+                <i class="fa-solid fa-user-shield"></i>
+                <span>3. 管理者アカウント（予約済み枠を「確定」へ承認・確定後は管理者のみ変更可）</span>
+              </div>
+              <button onclick="quickLogin('admin', 'admin1234')" class="w-full text-left p-3.5 rounded-xl border border-slate-300 bg-[#0f2942] text-white hover:bg-[#1d6f8a] transition-all flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-sm">管理者（本社管理部）</span>
+                  <p class="text-xs font-mono text-sky-200 mt-0.5">ID: admin / PW: admin1234</p>
+                </div>
+                <span class="px-3.5 py-1.5 rounded-lg bg-amber-400 text-slate-950 font-bold text-xs">
+                  管理者でログイン →
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== LOGGED-IN CALENDAR & MANAGEMENT DASHBOARD ===== -->
+      <div id="schedule-dashboard-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+        <!-- Role Action Guidance & Legend Bar -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div id="role-instruction-banner" class="flex items-start sm:items-center gap-3">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Status Legend -->
+          <div class="flex flex-wrap items-center gap-3 text-xs font-bold shrink-0 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/80">
+            <span class="flex items-center gap-1.5 text-slate-500">
+              <span class="w-3.5 h-3.5 rounded border border-slate-300 bg-white inline-block"></span>未登録
+            </span>
+            <span class="flex items-center gap-1.5 text-green-700">
+              <span class="w-3.5 h-3.5 rounded bg-[#16a34a] inline-block"></span>予約可能
+            </span>
+            <span class="flex items-center gap-1.5 text-red-700">
+              <span class="w-3.5 h-3.5 rounded bg-[#dc2626] inline-block"></span>予約済み
+            </span>
+            <span class="flex items-center gap-1.5 text-[#0f2942]">
+              <span class="w-3.5 h-3.5 rounded bg-[#0f2942] border border-amber-400 inline-block"></span>確定(管理者のみ変更可)
+            </span>
+          </div>
+        </div>
+
+        <!-- Admin Summary & Control Bar (Visible only to Admin) -->
+        <div id="admin-control-panel" class="hidden bg-[#0f2942] text-white rounded-2xl p-5 shadow-md space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/15 pb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-amber-400 text-slate-950 flex items-center justify-center font-bold"><i class="fa-solid fa-shield-halved"></i></span>
+              <div>
+                <h2 class="font-bold text-base">管理者（本社管理部）統括パネル</h2>
+                <p class="text-xs text-sky-200">「予約済み（レッド）」の枠を確定すると「確定」ステータスに進み、管理者以外は一切変更できなくなります。</p>
+              </div>
+            </div>
+            <button onclick="resetDemoData()" class="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-semibold text-white self-start sm:self-auto">
+              <i class="fa-solid fa-rotate-right mr-1"></i>初期デモデータにリセット
+            </button>
+          </div>
+          <div id="admin-stats-row" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Filters & Week Navigation -->
+        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Area Filter -->
+            <div class="flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
+              <button onclick="selectAreaFilter('all')" data-area="all" class="area-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1d6f8a] text-white transition-all">全エリア</button>
+              <button onclick="selectAreaFilter('tokyo')" data-area="tokyo" class="area-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-all">東京・豊洲</button>
+              <button onclick="selectAreaFilter('kawaguchiko')" data-area="kawaguchiko" class="area-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-all">富士河口湖</button>
+            </div>
+
+            <!-- Staff Tabs -->
+            <div id="staff-tabs-container" class="flex flex-wrap items-center gap-1.5">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Week Navigation & Reset Button -->
+          <div class="flex flex-wrap items-center gap-2 self-start xl:self-auto">
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm">
+              <button onclick="changeWeek(-1)" class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors">
+                <i class="fa-solid fa-chevron-left"></i> 前週
+              </button>
+              <button onclick="changeWeek(0)" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors">
+                今週
+              </button>
+              <span id="current-week-label" class="px-2 text-xs sm:text-sm font-bold text-[#0f2942] min-w-[140px] text-center"></span>
+              <button onclick="changeWeek(1)" class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors">
+                次週 <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+            <button onclick="resetDemoData()" class="px-3 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 text-xs font-semibold shadow-sm" title="デモデータを初期状態に戻す">
+              <i class="fa-solid fa-rotate-right"></i> リセット
+            </button>
+          </div>
+        </div>
+
+        <!-- Weekly Schedule Matrix Grid (09:00 - 18:00 across 7 days) -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto calendar-scroll">
+            <table class="w-full border-collapse min-w-[840px]">
+              <thead>
+                <tr id="calendar-thead-row" class="bg-slate-50 border-b border-slate-200 text-xs font-bold text-[#0f2942]">
+                  <!-- Populated by JS -->
+                </tr>
+              </thead>
+              <tbody id="calendar-tbody" class="divide-y divide-slate-200 text-xs">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity / Reservation List -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-[#0f2942] text-base flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-[#1d6f8a]"></i>
+              <span id="activity-list-title">登録スケジュール・予約一覧</span>
+            </h3>
+            <span id="activity-count-badge" class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">0件</span>
+          </div>
+          <div id="activity-list-container" class="divide-y divide-slate-100 max-h-72 overflow-y-auto">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. Electronic Public Notice Modal -->
+  <div id="notice-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-[#0f2942] text-white flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <i class="fa-regular fa-file-lines text-sky-300"></i>
+          <h3 id="notice-modal-title" class="font-bold text-sm sm:text-base">電子公告書面プレビュー</h3>
+        </div>
+        <button onclick="closeNoticeModal()" class="text-slate-300 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div id="notice-modal-body" class="p-6 sm:p-8 overflow-y-auto bg-slate-100 flex-grow">
+        <!-- Populated by JS -->
+      </div>
+      <div class="px-6 py-3.5 bg-white border-t border-slate-200 flex justify-end">
+        <button onclick="closeNoticeModal()" class="px-5 py-2 rounded-xl bg-[#0f2942] text-white text-xs font-bold hover:bg-[#1d6f8a]">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Slot Action Modal -->
+  <div id="slot-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden fade-in">
+      <div id="slot-modal-header" class="px-6 py-4 bg-[#0f2942] text-white flex justify-between items-center">
+        <h3 id="slot-modal-title" class="font-bold text-base">スケジュール枠の操作</h3>
+        <button onclick="closeSlotModal()" class="text-slate-300 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div id="slot-modal-content" class="p-6 space-y-4">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#091a2b] text-slate-400 border-t border-white/10 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+        <div class="md:col-span-2 space-y-3">
+          <div class="flex items-center gap-2.5 text-white">
+            <div class="w-9 h-9 rounded-lg bg-[#1d6f8a] text-white font-bold flex items-center justify-center text-xs">FFF</div>
+            <div>
+              <span class="block text-[10px] text-sky-300 tracking-wider">For your comfortable life</span>
+              <span class="font-bold text-lg">スリーフォース株式会社</span>
+            </div>
+          </div>
+          <p class="text-xs leading-relaxed max-w-md text-slate-300">
+            〒135-0061 東京都江東区豊洲3-4-2<br>
+            不動産管理業務 ／ マンション管理・共用部の修繕補修 ／ 不動産物件調査 ／ 清掃業務・民泊代行（東京都内・富士河口湖エリア）
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">メニュー</h4>
+          <ul class="space-y-2 text-xs">
+            <li><button onclick="navigateTo('home')" class="hover:text-sky-300 transition-colors">ホーム</button></li>
+            <li><button onclick="navigateTo('contact')" class="hover:text-sky-300 transition-colors">お問い合わせ</button></li>
+            <li><button onclick="navigateTo('notice')" class="hover:text-sky-300 transition-colors">電子公告</button></li>
+            <li><button onclick="navigateTo('works')" class="hover:text-sky-300 transition-colors">実績</button></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Web予約・管理ポータル</h4>
+          <ul class="space-y-2 text-xs">
+            <li>
+              <button onclick="navigateTo('schedule')" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5">
+                <i class="fa-regular fa-calendar-check"></i>清掃スタッフ出勤予定
+              </button>
+            </li>
+            <li class="text-slate-400">スタッフ・顧客・管理者ログイン対応</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
+        <p>&copy; 2023-2026 Three Force Co., Ltd. (スリーフォース株式会社) All Rights Reserved.</p>
+        <p class="italic text-slate-400">For your comfortable life</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script>
+    // ==================== 1. ACCOUNTS & MASTER DATA ====================
+    const STORAGE_KEY = 'three_force_schedule_v2';
+
+    const ACCOUNTS = {
+      staff01:  { id: 'staff01',  pw: 'pass1234',   role: 'staff',  name: '佐藤 健太', title: '清掃スタッフ（東京・豊洲担当）', staffId: 'staff01', area: 'tokyo' },
+      staff02:  { id: 'staff02',  pw: 'pass1234',   role: 'staff',  name: '鈴木 美咲', title: '清掃スタッフ（東京・湾岸担当）', staffId: 'staff02', area: 'tokyo' },
+      staff03:  { id: 'staff03',  pw: 'pass1234',   role: 'staff',  name: '高橋 誠',   title: '清掃スタッフ（富士河口湖リゾート担当）', staffId: 'staff03', area: 'kawaguchiko' },
+      client01: { id: 'client01', pw: 'client1234', role: 'client', name: '豊洲レジデンス管理様', title: '東京都江東区豊洲 賃貸・民泊オーナー' },
+      client02: { id: 'client02', pw: 'client1234', role: 'client', name: '河口湖ヴィラオーナー様', title: '山梨県富士河口湖町 貸別荘・民泊施設' },
+      admin:    { id: 'admin',    pw: 'admin1234',  role: 'admin',  name: '管理者（本社管理部）', title: 'スリーフォース株式会社 本社管理部' }
+    };
+
+    const STAFF_LIST = [
+      { id: 'staff01', name: '佐藤 健太', area: 'tokyo',       areaLabel: '東京・豊洲', specialty: '賃貸原状回復・定期巡回清掃' },
+      { id: 'staff02', name: '鈴木 美咲', area: 'tokyo',       areaLabel: '東京・湾岸', specialty: '民泊・ホテル客室クリーニング' },
+      { id: 'staff03', name: '高橋 誠',   area: 'kawaguchiko', areaLabel: '富士河口湖', specialty: 'リゾートヴィラ・貸別荘清掃常駐' }
+    ];
+
+    const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17]; // 09:00〜18:00 (1時間単位)
+    const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土'];
+
+    // ==================== 2. CORPORATE DATA (Based on fffcorp.jimdofree.com) ====================
+    const WORKS_DATA = [
+      {
+        id: 1, category: 'management', categoryLabel: '不動産管理業務',
+        title: '豊洲エリア 賃貸レジデンス総合管理（空室原状回復・定期巡回・更新管理）',
+        area: '東京都江東区豊洲・中央区エリア',
+        desc: '入居者様からの設備トラブル・問い合わせ一次対応、家賃管理、契約更新交渉から、退去後の原状回復手配・定期建物巡回点検までオーナー様に代わり一貫して管理。',
+        tag: '賃貸管理・定期巡回'
+      },
+      {
+        id: 2, category: 'repair', categoryLabel: 'マンション共用部修繕',
+        title: '湾岸エリア 分譲マンション共用部修繕・美観リフレッシュ工事',
+        area: '東京都江東区・港区 分譲マンション',
+        desc: 'エントランスホール・内廊下の床面・壁面補修、共用部照明のLED化、外構手すり塗装メンテナンスを実施し、建物全体の資産価値と居住快適性を向上。',
+        tag: '共用部修繕・予防保全'
+      },
+      {
+        id: 3, category: 'cleaning', categoryLabel: '清掃業務・民泊代行',
+        title: '富士河口湖エリア 貸別荘・リゾートヴィラ定期チェックアウト清掃＆運営代行',
+        area: '山梨県南都留郡富士河口湖町',
+        desc: '現地常駐スタッフ体制により、宿泊ゲストのチェックアウト後の客室・水回り・露天風呂清掃、リネン交換、アメニティ補充および完了写真レポートを迅速に実施。',
+        tag: '富士河口湖・民泊清掃'
+      },
+      {
+        id: 4, category: 'survey', categoryLabel: '不動産物件調査',
+        title: '購入検討中の投資用一棟マンション 現地インスペクション・修繕履歴調査',
+        area: '東京都内（城東・湾岸エリア）',
+        desc: '不動産投資家様・法人様からのご依頼により、購入検討物件の外壁・屋上・共用設備の劣化状況および周辺管理環境を現地実査し、写真付き詳細レポートを作成。',
+        tag: '物件調査・購入前診断'
+      },
+      {
+        id: 5, category: 'cleaning', categoryLabel: '清掃業務・民泊代行',
+        title: '豊洲・湾岸エリア 賃貸マンション退去後ハウスクリーニング一括対応',
+        area: '東京都江東区豊洲周辺',
+        desc: '入退去シーズンにおける複数戸のエアコン分解洗浄、水回り専門クリーニング、フローリングワックス仕上げを自社スタッフ連携により短納期で遂行。',
+        tag: 'ハウスクリーニング'
+      },
+      {
+        id: 6, category: 'management', categoryLabel: '不動産管理業務',
+        title: '都心部 都市型民泊・マンスリーレジデンス運営管理＆清掃連携',
+        area: '東京都中央区・台東区',
+        desc: '民泊運営におけるゲスト対応・清掃スケジュール自動連携・消耗品在庫管理を一括受託し、高評価レビュー獲得と安定稼働を支援。',
+        tag: '民泊運営代行'
+      }
+    ];
+
+    const NOTICES_DATA = [
+      {
+        id: 'notice-3rd',
+        date: '2026年8月21日',
+        type: '決算公告',
+        title: '第3期 決算公告（自 2025年6月1日 至 2026年5月31日）',
+        summary: '第3期定時株主総会において承認された貸借対照表の要旨を公告いたします。',
+        assets: '68,420千円',
+        liabilities: '29,150千円',
+        netAssets: '39,270千円',
+        netIncome: '12,640千円'
+      },
+      {
+        id: 'notice-2nd',
+        date: '2025年8月22日',
+        type: '決算公告',
+        title: '第2期 決算公告（自 2024年6月1日 至 2025年5月31日）',
+        summary: '第2期定時株主総会において承認された貸借対照表の要旨を公告いたします。',
+        assets: '49,800千円',
+        liabilities: '23,170千円',
+        netAssets: '26,630千円',
+        netIncome: '9,850千円'
+      },
+      {
+        id: 'notice-1st',
+        date: '2024年8月23日',
+        type: '決算公告',
+        title: '第1期 決算公告（自 2023年6月設立 至 2024年5月31日）',
+        summary: '第1期定時株主総会において承認された貸借対照表の要旨を公告いたします。',
+        assets: '32,500千円',
+        liabilities: '15,720千円',
+        netAssets: '16,780千円',
+        netIncome: '6,780千円'
+      }
+    ];
+
+    // ==================== 3. APPLICATION STATE ====================
+    let currentPage = 'home';
+    let currentUser = null;
+    let selectedAreaFilter = 'all';   // 'all' | 'tokyo' | 'kawaguchiko'
+    let selectedStaffFilter = 'all';  // 'all' | 'staff01' | 'staff02' | 'staff03'
+    let weekOffset = 0;
+    let scheduleSlots = {};
+
+    // ==================== 4. DATE & SAMPLE DATA HELPERS ====================
+    function getMondayOfWeek(offset = 0) {
+      const now = new Date();
+      const day = now.getDay();
+      const diffToMonday = (day === 0 ? -6 : 1 - day) + (offset * 7);
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate() + diffToMonday);
+    }
+
+    function formatDateKey(dateObj) {
+      const y = dateObj.getFullYear();
+      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const d = String(dateObj.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function generateDefaultSampleSlots() {
+      const monday = getMondayOfWeek(0);
+      const getDayStr = (addDays) => {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + addDays);
+        return formatDateKey(d);
+      };
+
+      const d0 = getDayStr(0); // Mon
+      const d1 = getDayStr(1); // Tue
+      const d2 = getDayStr(2); // Wed
+      const d3 = getDayStr(3); // Thu
+      const d4 = getDayStr(4); // Fri
+      const d5 = getDayStr(5); // Sat
+
+      const samples = [
+        // staff01: 佐藤 健太（東京・豊洲担当）
+        { staffId: 'staff01', date: d0, hour: 10, status: 'confirmed', clientId: 'client01', clientName: '豊洲レジデンス管理様', note: '302号室 退去後ハウスクリーニング' },
+        { staffId: 'staff01', date: d0, hour: 11, status: 'confirmed', clientId: 'client01', clientName: '豊洲レジデンス管理様', note: '302号室 退去後ハウスクリーニング' },
+        { staffId: 'staff01', date: d0, hour: 14, status: 'available' },
+        { staffId: 'staff01', date: d0, hour: 15, status: 'available' },
+        { staffId: 'staff01', date: d1, hour: 10, status: 'booked', clientId: 'client01', clientName: '豊洲レジデンス管理様', note: 'エントランス・共用廊下定期美観清掃' },
+        { staffId: 'staff01', date: d1, hour: 13, status: 'available' },
+        { staffId: 'staff01', date: d2, hour: 11, status: 'available' },
+        { staffId: 'staff01', date: d3, hour: 14, status: 'available' },
+        { staffId: 'staff01', date: d4, hour: 10, status: 'available' },
+
+        // staff02: 鈴木 美咲（東京・湾岸担当）
+        { staffId: 'staff02', date: d0, hour: 13, status: 'available' },
+        { staffId: 'staff02', date: d1, hour: 11, status: 'booked', clientId: 'client01', clientName: '豊洲レジデンス管理様', note: '湾岸民泊ルーム チェックアウト清掃' },
+        { staffId: 'staff02', date: d1, hour: 14, status: 'available' },
+        { staffId: 'staff02', date: d2, hour: 10, status: 'confirmed', clientId: 'client01', clientName: '豊洲レジデンス管理様', note: '501号室 リネン交換・除菌清掃' },
+        { staffId: 'staff02', date: d3, hour: 11, status: 'available' },
+        { staffId: 'staff02', date: d4, hour: 15, status: 'available' },
+
+        // staff03: 高橋 誠（富士河口湖リゾート担当）
+        { staffId: 'staff03', date: d0, hour: 11, status: 'booked', clientId: 'client02', clientName: '河口湖ヴィラオーナー様', note: '河口湖ヴィラA棟 チェックアウト清掃・露天風呂点検' },
+        { staffId: 'staff03', date: d0, hour: 12, status: 'booked', clientId: 'client02', clientName: '河口湖ヴィラオーナー様', note: '河口湖ヴィラA棟 チェックアウト清掃・露天風呂点検' },
+        { staffId: 'staff03', date: d1, hour: 10, status: 'available' },
+        { staffId: 'staff03', date: d1, hour: 11, status: 'available' },
+        { staffId: 'staff03', date: d2, hour: 13, status: 'available' },
+        { staffId: 'staff03', date: d3, hour: 10, status: 'confirmed', clientId: 'client02', clientName: '河口湖ヴィラオーナー様', note: '富士見ロッジ 定期特別清掃・リネン補充' },
+        { staffId: 'staff03', date: d4, hour: 11, status: 'available' },
+        { staffId: 'staff03', date: d5, hour: 10, status: 'available' }
+      ];
+
+      const map = {};
+      samples.forEach(s => {
+        const key = `${s.staffId}_${s.date}_${s.hour}`;
+        map[key] = { ...s, updatedAt: new Date().toISOString() };
+      });
+      return map;
+    }
+
+    function loadScheduleFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') {
+            scheduleSlots = parsed;
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Storage read fallback:', e);
+      }
+      scheduleSlots = generateDefaultSampleSlots();
+      saveScheduleToStorage();
+    }
+
+    function saveScheduleToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(scheduleSlots));
+      } catch (e) {
+        console.warn('Storage write fallback:', e);
+      }
+    }
+
+    // ==================== 5. CORPORATE PAGES & NAVIGATION ====================
+    window.navigateTo = function(pageId) {
+      currentPage = pageId;
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+      const target = document.getElementById(`page-${pageId}`);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const nav = btn.getAttribute('data-nav');
+        if (nav === 'schedule') return;
+        if (nav === pageId) {
+          btn.classList.add('bg-[#e6f2f5]', 'text-[#0f2942]');
+          btn.classList.remove('text-slate-700');
+        } else {
+          btn.classList.remove('bg-[#e6f2f5]', 'text-[#0f2942]');
+          btn.classList.add('text-slate-700');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (pageId === 'schedule' && currentUser) {
+        renderCalendarDashboard();
+      }
+    };
+
+    window.toggleMobileMenu = function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    };
+
+    window.filterWorks = function(category) {
+      document.querySelectorAll('.work-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.className = 'work-filter-btn px-4 py-2 rounded-xl text-sm font-bold bg-[#0f2942] text-white shadow-sm transition-all';
+        } else {
+          btn.className = 'work-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all';
+        }
+      });
+
+      const grid = document.getElementById('works-grid');
+      const filtered = category === 'all' ? WORKS_DATA : WORKS_DATA.filter(w => w.category === category);
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+          <div class="p-5 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
+            <span class="px-3 py-1 rounded-full bg-[#e6f2f5] text-[#0f2942] text-xs font-bold">${item.categoryLabel}</span>
+            <span class="text-xs font-semibold text-slate-500">${item.tag}</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="font-bold text-lg text-[#0f2942] leading-snug">${item.title}</h3>
+              <p class="text-xs text-[#1d6f8a] font-semibold mt-1.5"><i class="fa-solid fa-location-dot mr-1"></i>${item.area}</p>
+              <p class="text-sm text-slate-600 mt-3 leading-relaxed">${item.desc}</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+              <span>スリーフォース株式会社 実績</span>
+              <button onclick="navigateTo('contact')" class="text-[#1d6f8a] font-bold hover:underline">ご相談・お見積り →</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    };
+
+    function renderNotices() {
+      const list = document.getElementById('notice-list');
+      list.innerHTML = NOTICES_DATA.map(n => `
+        <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/70 transition-colors">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs font-mono text-slate-500">${n.date}</span>
+              <span class="px-2.5 py-0.5 rounded bg-[#e6f2f5] text-[#0f2942] text-xs font-bold">${n.type}</span>
+            </div>
+            <h3 class="font-bold text-[#0f2942] text-base">${n.title}</h3>
+            <p class="text-xs text-slate-600">${n.summary}</p>
+          </div>
+          <button onclick="openNoticeModal('${n.id}')" class="shrink-0 px-4 py-2.5 rounded-xl bg-[#0f2942] hover:bg-[#1d6f8a] text-white text-xs font-bold transition-colors flex items-center gap-2 self-start sm:self-center">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>公告書面を表示</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    window.openNoticeModal = function(noticeId) {
+      const notice = NOTICES_DATA.find(n => n.id === noticeId);
+      if (!notice) return;
+      document.getElementById('notice-modal-title').textContent = notice.title;
+      document.getElementById('notice-modal-body').innerHTML = `
+        <div class="bg-white p-6 sm:p-10 shadow-md border border-slate-300 max-w-xl mx-auto space-y-6 text-slate-900">
+          <div class="text-right text-xs text-slate-500">${notice.date}</div>
+          <div class="text-center border-b-2 border-[#0f2942] pb-4">
+            <p class="text-xs tracking-widest text-slate-500">会社法第440条第4項に基づく電子公告</p>
+            <h4 class="text-xl font-bold text-[#0f2942] mt-1">${notice.title}</h4>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-700">
+            東京都江東区豊洲三丁目4番2号<br>
+            <strong>スリーフォース株式会社</strong><br>
+            代表取締役　福岡 かほり
+          </p>
+          <div class="space-y-2">
+            <p class="text-xs font-bold text-[#0f2942]">貸借対照表の要旨（単位：千円）</p>
+            <table class="w-full border-collapse border border-slate-400 text-xs">
+              <tr class="bg-slate-100">
+                <th class="border border-slate-400 p-2 text-left">科目</th>
+                <th class="border border-slate-400 p-2 text-right">金額</th>
+              </tr>
+              <tr>
+                <td class="border border-slate-400 p-2">資産の部合計</td>
+                <td class="border border-slate-400 p-2 text-right font-mono font-bold">${notice.assets}</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-400 p-2">負債の部合計</td>
+                <td class="border border-slate-400 p-2 text-right font-mono">${notice.liabilities}</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-400 p-2">純資産の部合計</td>
+                <td class="border border-slate-400 p-2 text-right font-mono font-bold">${notice.netAssets}</td>
+              </tr>
+              <tr class="bg-[#e6f2f5]">
+                <td class="border border-slate-400 p-2 font-bold">（うち当期純利益）</td>
+                <td class="border border-slate-400 p-2 text-right font-mono font-bold text-[#0f2942]">${notice.netIncome}</td>
+              </tr>
+            </table>
+          </div>
+          <p class="text-[11px] text-slate-500 pt-2">
+            ※本電子公告は、会社法第440条第4項の規定に基づき掲載しております。
+          </p>
+        </div>
+      `;
+      document.getElementById('notice-modal').classList.remove('hidden');
+    };
+
+    window.closeNoticeModal = function() {
+      document.getElementById('notice-modal').classList.add('hidden');
+    };
+
+    window.handleContactSubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('contact-form-card').classList.add('hidden');
+      document.getElementById('contact-success-card').classList.remove('hidden');
+      showToast('お問い合わせを送信しました', 'success');
+    };
+
+    window.resetContactForm = function() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-success-card').classList.add('hidden');
+      document.getElementById('contact-form-card').classList.remove('hidden');
+    };
+
+    // ==================== 6. AUTHENTICATION FOR SCHEDULE PORTAL ====================
+    window.quickLogin = function(id, pw) {
+      document.getElementById('login-id-input').value = id;
+      document.getElementById('login-pw-input').value = pw;
+      performLogin(id, pw);
+    };
+
+    window.handleLoginSubmit = function(e) {
+      e.preventDefault();
+      const id = document.getElementById('login-id-input').value.trim();
+      const pw = document.getElementById('login-pw-input').value.trim();
+      performLogin(id, pw);
+    };
+
+    function performLogin(id, pw) {
+      const account = ACCOUNTS[id];
+      const errBox = document.getElementById('login-error-msg');
+      if (!account || account.pw !== pw) {
+        errBox.classList.remove('hidden');
+        return;
+      }
+      errBox.classList.add('hidden');
+      currentUser = account;
+
+      selectedAreaFilter = 'all';
+      if (currentUser.role === 'staff') {
+        selectedStaffFilter = currentUser.staffId;
+      } else {
+        selectedStaffFilter = 'all';
+      }
+
+      updateHeaderUserUI();
+      document.getElementById('schedule-login-view').classList.add('hidden');
+      document.getElementById('schedule-dashboard-view').classList.remove('hidden');
+      renderCalendarDashboard();
+      showToast(`${currentUser.name} としてログインしました`, 'success');
+    }
+
+    window.handleLogout = function() {
+      currentUser = null;
+      document.getElementById('user-header-status').classList.add('hidden');
+      document.getElementById('schedule-dashboard-view').classList.add('hidden');
+      document.getElementById('schedule-login-view').classList.remove('hidden');
+      document.getElementById('login-id-input').value = '';
+      document.getElementById('login-pw-input').value = '';
+      showToast('ログアウトしました', 'info');
+    };
+
+    function updateHeaderUserUI() {
+      const statusBox = document.getElementById('user-header-status');
+      const avatar = document.getElementById('user-role-avatar');
+      const nameEl = document.getElementById('user-display-name');
+      const badgeEl = document.getElementById('user-role-badge');
+      const subEl = document.getElementById('user-id-sub');
+
+      statusBox.classList.remove('hidden');
+      nameEl.textContent = currentUser.name;
+      subEl.textContent = `ID: ${currentUser.id} ｜ ${currentUser.title}`;
+
+      if (currentUser.role === 'staff') {
+        avatar.className = 'w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm bg-[#16a34a] text-white';
+        avatar.innerHTML = '<i class="fa-solid fa-user-check"></i>';
+        badgeEl.className = 'text-[11px] font-bold px-2 py-0.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/40';
+        badgeEl.textContent = '清掃スタッフ';
+      } else if (currentUser.role === 'client') {
+        avatar.className = 'w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm bg-[#dc2626] text-white';
+        avatar.innerHTML = '<i class="fa-solid fa-building"></i>';
+        badgeEl.className = 'text-[11px] font-bold px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/40';
+        badgeEl.textContent = '顧客・オーナー';
+      } else {
+        avatar.className = 'w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm bg-amber-400 text-slate-950';
+        avatar.innerHTML = '<i class="fa-solid fa-shield-halved"></i>';
+        badgeEl.className = 'text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40';
+        badgeEl.textContent = '管理者権限';
+      }
+    }
+
+    // ==================== 7. CALENDAR FILTERS & RENDERING ====================
+    window.selectAreaFilter = function(area) {
+      selectedAreaFilter = area;
+      if (area !== 'all' && selectedStaffFilter !== 'all') {
+        const st = STAFF_LIST.find(s => s.id === selectedStaffFilter);
+        if (st && st.area !== area) {
+          selectedStaffFilter = 'all';
+        }
+      }
+      renderCalendarDashboard();
+    };
+
+    window.selectStaffTab = function(staffId) {
+      selectedStaffFilter = staffId;
+      renderCalendarDashboard();
+    };
+
+    window.changeWeek = function(delta) {
+      weekOffset = delta === 0 ? 0 : weekOffset + delta;
+      renderCalendarDashboard();
+    };
+
+    window.resetDemoData = function() {
+      scheduleSlots = generateDefaultSampleSlots();
+      saveScheduleToStorage();
+      renderCalendarDashboard();
+      showToast('初期デモデータにリセットしました', 'info');
+    };
+
+    function renderCalendarDashboard() {
+      if (!currentUser) return;
+
+      // 1. Role Guidance Banner
+      const guidanceEl = document.getElementById('role-instruction-banner');
+      if (currentUser.role === 'staff') {
+        guidanceEl.innerHTML = `
+          <div class="w-10 h-10 rounded-xl bg-green-100 text-green-700 flex items-center justify-center text-lg shrink-0">
+            <i class="fa-regular fa-hand-pointer"></i>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-[#0f2942]">【清掃スタッフ操作モード】空き時間の登録・解除</p>
+            <p class="text-xs text-slate-600 mt-0.5">ご自身の時間枠をクリックすると<span class="text-green-700 font-bold">グリーン「予約可能」</span>に登録されます。※顧客が予約して<span class="text-red-600 font-bold">レッド「予約済み」</span>になった枠や、管理者「確定」済の枠は変更できません。</p>
+          </div>
+        `;
+      } else if (currentUser.role === 'client') {
+        guidanceEl.innerHTML = `
+          <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-lg shrink-0">
+            <i class="fa-regular fa-calendar-plus"></i>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-[#0f2942]">【顧客・オーナー予約モード】グリーン枠への清掃予約</p>
+            <p class="text-xs text-slate-600 mt-0.5"><span class="text-green-700 font-bold">グリーン「予約可能」</span>の枠をクリックして物件名・作業内容を入力し予約すると、<span class="text-red-600 font-bold">レッド「予約済み」</span>に変わりスタッフ側の変更がロックされます。</p>
+          </div>
+        `;
+      } else {
+        guidanceEl.innerHTML = `
+          <div class="w-10 h-10 rounded-xl bg-[#0f2942] text-amber-400 flex items-center justify-center text-lg shrink-0">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-[#0f2942]">【管理者統括モード】予約の最終確定・全枠管理</p>
+            <p class="text-xs text-slate-600 mt-0.5"><span class="text-red-600 font-bold">レッド「予約済み」</span>の枠をクリックして「確定する」を実行すると<span class="text-[#0f2942] font-bold">「確定」</span>ステータスに進み、管理者以外は一切変更できなくなります。</p>
+          </div>
+        `;
+      }
+
+      // 2. Admin Control Panel
+      const adminPanel = document.getElementById('admin-control-panel');
+      if (currentUser.role === 'admin') {
+        adminPanel.classList.remove('hidden');
+        const allValues = Object.values(scheduleSlots);
+        const availCount = allValues.filter(s => s.status === 'available').length;
+        const bookedCount = allValues.filter(s => s.status === 'booked').length;
+        const confirmedCount = allValues.filter(s => s.status === 'confirmed').length;
+
+        document.getElementById('admin-stats-row').innerHTML = `
+          <div class="bg-white/10 border border-white/15 rounded-xl p-3">
+            <p class="text-[11px] text-sky-200">予約可能（グリーン）</p>
+            <p class="text-xl font-bold text-green-400 mt-0.5">${availCount}<span class="text-xs text-white ml-1">枠</span></p>
+          </div>
+          <div class="bg-white/10 border border-red-400/40 rounded-xl p-3">
+            <p class="text-[11px] text-red-200">承認待ち・予約済み（レッド）</p>
+            <p class="text-xl font-bold text-red-400 mt-0.5">${bookedCount}<span class="text-xs text-white ml-1">枠</span></p>
+          </div>
+          <div class="bg-white/10 border border-amber-400/40 rounded-xl p-3">
+            <p class="text-[11px] text-amber-200">確定済（管理者のみ変更可）</p>
+            <p class="text-xl font-bold text-amber-300 mt-0.5">${confirmedCount}<span class="text-xs text-white ml-1">枠</span></p>
+          </div>
+          <div class="bg-white/10 border border-white/15 rounded-xl p-3">
+            <p class="text-[11px] text-sky-200">登録スタッフ（東京・河口湖）</p>
+            <p class="text-xl font-bold text-white mt-0.5">${STAFF_LIST.length}<span class="text-xs text-sky-200 ml-1">名</span></p>
+          </div>
+        `;
+      } else {
+        adminPanel.classList.add('hidden');
+      }
+
+      // 3. Area Filter Buttons UI
+      document.querySelectorAll('.area-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-area') === selectedAreaFilter) {
+          btn.className = 'area-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1d6f8a] text-white transition-all';
+        } else {
+          btn.className = 'area-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-all';
+        }
+      });
+
+      // 4. Staff Filter Tabs
+      const areaFilteredStaff = selectedAreaFilter === 'all'
+        ? STAFF_LIST
+        : STAFF_LIST.filter(s => s.area === selectedAreaFilter);
+
+      const tabsContainer = document.getElementById('staff-tabs-container');
+      const tabItems = [
+        { id: 'all', label: selectedAreaFilter === 'all' ? '全スタッフ表示' : '該当エリア全員' },
+        ...areaFilteredStaff.map(s => ({
+          id: s.id,
+          label: `${s.name}（${s.areaLabel}）`
+        }))
+      ];
+
+      tabsContainer.innerHTML = tabItems.map(t => {
+        const active = selectedStaffFilter === t.id;
+        return `
+          <button onclick="selectStaffTab('${t.id}')" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+            active
+              ? 'bg-[#0f2942] text-white shadow-sm'
+              : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+          }">
+            ${t.label}
+          </button>
+        `;
+      }).join('');
+
+      // 5. Week Dates (7 Days)
+      const monday = getMondayOfWeek(weekOffset);
+      const weekDates = [];
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        weekDates.push({
+          dateStr: formatDateKey(d),
+          monthDay: `${d.getMonth() + 1}/${d.getDate()}`,
+          dayName: DAY_NAMES[d.getDay()],
+          isToday: formatDateKey(d) === formatDateKey(new Date())
+        });
+      }
+
+      document.getElementById('current-week-label').textContent = `${weekDates[0].monthDay} 〜 ${weekDates[6].monthDay}`;
+
+      // 6. Table Header
+      document.getElementById('calendar-thead-row').innerHTML = `
+        <th class="p-3 text-left bg-slate-100 border-r border-slate-200 w-24 sticky left-0 z-10">時間帯</th>
+        ${weekDates.map(d => `
+          <th class="p-3 text-center min-w-[120px] ${d.isToday ? 'bg-[#e6f2f5] text-[#0f2942]' : ''}">
+            <div class="text-xs font-bold">${d.monthDay} (${d.dayName})</div>
+            ${d.isToday ? '<span class="inline-block mt-0.5 px-1.5 py-0.2 rounded bg-[#1d6f8a] text-white text-[10px]">TODAY</span>' : ''}
+          </th>
+        `).join('')}
+      `;
+
+      // 7. Table Body (09:00 - 18:00)
+      const targetStaffList = selectedStaffFilter === 'all'
+        ? areaFilteredStaff
+        : areaFilteredStaff.filter(s => s.id === selectedStaffFilter);
+
+      document.getElementById('calendar-tbody').innerHTML = HOURS.map(hour => {
+        return `
+          <tr class="hover:bg-slate-50/40">
+            <td class="p-3 font-mono font-bold text-[#0f2942] bg-slate-50 border-r border-slate-200 sticky left-0 z-10 align-top">
+              ${String(hour).padStart(2, '0')}:00<br>
+              <span class="text-[10px] text-slate-400 font-normal">〜${String(hour + 1).padStart(2, '0')}:00</span>
+            </td>
+            ${weekDates.map(d => {
+              const cellsHtml = targetStaffList.map(staff => {
+                const key = `${staff.id}_${d.dateStr}_${hour}`;
+                const slot = scheduleSlots[key];
+                return renderSlotPill(staff, d.dateStr, hour, slot, targetStaffList.length > 1);
+              }).join('');
+              return `<td class="p-2 align-top border-r border-slate-100 space-y-1.5">${cellsHtml}</td>`;
+            }).join('')}
+          </tr>
+        `;
+      }).join('');
+
+      // 8. Render Activity List
+      renderActivityList();
+    }
+
+    function renderSlotPill(staff, dateStr, hour, slot, isMultiStaffView) {
+      const status = slot ? slot.status : 'empty';
+      const staffShort = staff.name.split(' ')[0];
+      const areaShort = staff.area === 'kawaguchiko' ? '河口湖' : '豊洲';
+
+      if (status === 'empty') {
+        const canStaffCreate = (currentUser.role === 'staff' && currentUser.staffId === staff.id) || currentUser.role === 'admin';
+        if (!canStaffCreate) {
+          return isMultiStaffView
+            ? `<div class="px-2 py-1 rounded-lg border border-dashed border-slate-200 text-slate-400 text-[11px] flex justify-between items-center"><span>${staffShort}(${areaShort})</span><span>-</span></div>`
+            : `<div class="h-9 rounded-lg border border-dashed border-slate-200 flex items-center justify-center text-slate-300 text-[11px]">空きなし</div>`;
+        }
+        return `
+          <button onclick="handleSlotClick('${staff.id}', '${dateStr}', ${hour})"
+            class="w-full px-2.5 py-1.5 rounded-lg border border-dashed border-slate-300 bg-white hover:border-[#16a34a] hover:bg-green-50/70 text-slate-500 hover:text-green-700 text-[11px] font-medium transition-all flex items-center justify-between group">
+            <span>${isMultiStaffView ? `${staffShort}(${areaShort})` : '未登録'}</span>
+            <span class="opacity-65 group-hover:opacity-100"><i class="fa-solid fa-plus"></i> 空き登録</span>
+          </button>
+        `;
+      }
+
+      if (status === 'available') {
+        // GREEN (#16a34a): 予約可能
+        return `
+          <button onclick="handleSlotClick('${staff.id}', '${dateStr}', ${hour})"
+            class="w-full px-2.5 py-1.5 rounded-lg bg-[#16a34a] hover:bg-green-700 text-white shadow-sm text-left transition-all">
+            <div class="flex items-center justify-between text-[11px] font-bold">
+              <span>${isMultiStaffView ? `${staffShort}(${areaShort})` : '予約可能'}</span>
+              <span class="px-1.5 py-0.2 rounded bg-green-900/40 text-[10px]">予約可能</span>
+            </div>
+            ${!isMultiStaffView ? '<div class="text-[10px] text-green-100 mt-0.5">クリックして操作</div>' : ''}
+          </button>
+        `;
+      }
+
+      if (status === 'booked') {
+        // RED (#dc2626): 予約済み
+        const isStaffLocked = currentUser.role === 'staff';
+        return `
+          <button onclick="handleSlotClick('${staff.id}', '${dateStr}', ${hour})"
+            class="w-full px-2.5 py-1.5 rounded-lg bg-[#dc2626] hover:bg-red-700 text-white shadow-sm text-left transition-all ${isStaffLocked ? 'cursor-not-allowed opacity-95' : ''}">
+            <div class="flex items-center justify-between text-[11px] font-bold">
+              <span>${isMultiStaffView ? `${staffShort}(${areaShort})` : '予約済み'}</span>
+              <span class="px-1.5 py-0.2 rounded bg-red-950/50 text-[10px] flex items-center gap-1">
+                ${isStaffLocked ? '<i class="fa-solid fa-lock text-[9px]"></i>' : ''}予約済み
+              </span>
+            </div>
+            <div class="text-[10px] text-red-100 truncate mt-0.5">${slot.clientName || '顧客予約'}</div>
+          </button>
+        `;
+      }
+
+      if (status === 'confirmed') {
+        // DARK NAVY + GOLD BADGE: 確定
+        const isAdmin = currentUser.role === 'admin';
+        return `
+          <button onclick="handleSlotClick('${staff.id}', '${dateStr}', ${hour})"
+            class="w-full px-2.5 py-1.5 rounded-lg bg-[#0f2942] border border-amber-400 text-white shadow-sm text-left transition-all ${!isAdmin ? 'cursor-not-allowed' : 'hover:bg-[#163a5c]'}">
+            <div class="flex items-center justify-between text-[11px] font-bold">
+              <span>${isMultiStaffView ? `${staffShort}(${areaShort})` : '確定'}</span>
+              <span class="px-1.5 py-0.2 rounded bg-amber-400 text-slate-950 text-[10px] font-extrabold flex items-center gap-1">
+                <i class="fa-solid fa-lock text-[9px]"></i>確定
+              </span>
+            </div>
+            <div class="text-[10px] text-sky-200 truncate mt-0.5">${slot.clientName || '確定案件'}</div>
+          </button>
+        `;
+      }
+    }
+
+    // ==================== 8. ROLE-BASED SLOT INTERACTION LOGIC ====================
+    window.handleSlotClick = function(staffId, dateStr, hour) {
+      if (!currentUser) return;
+      const key = `${staffId}_${dateStr}_${hour}`;
+      const slot = scheduleSlots[key];
+      const staffObj = STAFF_LIST.find(s => s.id === staffId);
+
+      // ----- ROLE 1: CLEANING STAFF -----
+      if (currentUser.role === 'staff') {
+        if (currentUser.staffId !== staffId) {
+          showToast('他のスタッフの出勤予定は変更できません', 'error');
+          return;
+        }
+        if (!slot) {
+          scheduleSlots[key] = {
+            staffId,
+            date: dateStr,
+            hour,
+            status: 'available',
+            updatedAt: new Date().toISOString()
+          };
+          saveScheduleToStorage();
+          renderCalendarDashboard();
+          showToast(`${dateStr} ${hour}:00 をグリーン「予約可能」に登録しました`, 'success');
+          return;
+        }
+        if (slot.status === 'available') {
+          delete scheduleSlots[key];
+          saveScheduleToStorage();
+          renderCalendarDashboard();
+          showToast(`${dateStr} ${hour}:00 の空き枠登録を解除しました`, 'info');
+          return;
+        }
+        if (slot.status === 'booked') {
+          showToast('顧客から予約済み（レッド）になっているため、清掃スタッフは変更できません', 'error');
+          return;
+        }
+        if (slot.status === 'confirmed') {
+          showToast('管理者により「確定」ステータスとなっているため変更できません', 'error');
+          return;
+        }
+      }
+
+      // ----- ROLE 2: CLIENT -----
+      if (currentUser.role === 'client') {
+        if (!slot) {
+          showToast('この時間帯はスタッフの空き登録がありません', 'info');
+          return;
+        }
+        if (slot.status === 'confirmed') {
+          showToast('管理者により「確定」となった予約は変更できません（管理者のみ変更可能）', 'error');
+          return;
+        }
+        if (slot.status === 'available') {
+          openClientBookingModal(staffObj, dateStr, hour);
+          return;
+        }
+        if (slot.status === 'booked') {
+          if (slot.clientId === currentUser.id) {
+            openClientManageBookedModal(staffObj, dateStr, hour, slot);
+          } else {
+            showToast('この時間枠は他のお客様によって既に予約済みです', 'error');
+          }
+          return;
+        }
+      }
+
+      // ----- ROLE 3: ADMIN -----
+      if (currentUser.role === 'admin') {
+        openAdminSlotModal(staffObj, dateStr, hour, slot);
+      }
+    };
+
+    // ==================== 9. MODALS FOR BOOKING & ADMIN APPROVAL ====================
+    function openClientBookingModal(staffObj, dateStr, hour) {
+      const modal = document.getElementById('slot-modal');
+      document.getElementById('slot-modal-header').className = 'px-6 py-4 bg-[#16a34a] text-white flex justify-between items-center';
+      document.getElementById('slot-modal-title').textContent = '清掃スタッフ Web予約申込';
+      document.getElementById('slot-modal-content').innerHTML = `
+        <div class="bg-green-50 border border-green-200 rounded-xl p-3.5 text-xs space-y-1 text-green-950">
+          <p><span class="font-bold">担当スタッフ：</span>${staffObj.name}（${staffObj.areaLabel}／${staffObj.specialty}）</p>
+          <p><span class="font-bold">予約日時：</span>${dateStr} ${String(hour).padStart(2, '0')}:00〜${String(hour + 1).padStart(2, '0')}:00</p>
+          <p><span class="font-bold">ご予約者様：</span>${currentUser.name}</p>
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-slate-700">物件名・号室・作業内容メモ</label>
+          <input id="booking-note-input" type="text" placeholder="例：豊洲マンション 405号室 チェックアウト清掃" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-[#1d6f8a] outline-none">
+        </div>
+        <p class="text-[11px] text-slate-500">
+          ※予約を入れると色がレッドに変わり、ステータスが「予約済み」に変更され、清掃スタッフは変更できなくなります。
+        </p>
+        <div class="flex justify-end gap-2.5 pt-2">
+          <button onclick="closeSlotModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50">キャンセル</button>
+          <button onclick="confirmClientBooking('${staffObj.id}', '${dateStr}', ${hour})" class="px-5 py-2 rounded-xl bg-[#dc2626] hover:bg-red-700 text-white text-xs font-bold shadow-sm">
+            この枠を予約する
+          </button>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    window.confirmClientBooking = function(staffId, dateStr, hour) {
+      const note = document.getElementById('booking-note-input').value.trim() || '定期・スポット清掃依頼';
+      const key = `${staffId}_${dateStr}_${hour}`;
+      scheduleSlots[key] = {
+        staffId,
+        date: dateStr,
+        hour,
+        status: 'booked',
+        clientId: currentUser.id,
+        clientName: currentUser.name,
+        note,
+        updatedAt: new Date().toISOString()
+      };
+      saveScheduleToStorage();
+      closeSlotModal();
+      renderCalendarDashboard();
+      showToast('予約が完了しました（レッド「予約済み」に変更）', 'success');
+    };
+
+    function openClientManageBookedModal(staffObj, dateStr, hour, slot) {
+      const modal = document.getElementById('slot-modal');
+      document.getElementById('slot-modal-header').className = 'px-6 py-4 bg-[#dc2626] text-white flex justify-between items-center';
+      document.getElementById('slot-modal-title').textContent = '予約済み内容の確認・キャンセル';
+      document.getElementById('slot-modal-content').innerHTML = `
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-xs space-y-1.5 text-red-950">
+          <div class="font-bold text-red-700">ステータス：予約済み（管理者確定待ち）</div>
+          <p><span class="font-bold">担当スタッフ：</span>${staffObj.name}（${staffObj.areaLabel}）</p>
+          <p><span class="font-bold">予約日時：</span>${dateStr} ${String(hour).padStart(2, '0')}:00〜${String(hour + 1).padStart(2, '0')}:00</p>
+          <p><span class="font-bold">物件・作業メモ：</span>${slot.note || '-'}</p>
+        </div>
+        <p class="text-xs text-slate-600">
+          管理者が「確定」にする前であれば、予約を取り消してスタッフの空き枠（グリーン）に戻すことができます。
+        </p>
+        <div class="flex justify-end gap-2.5 pt-2">
+          <button onclick="closeSlotModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50">閉じる</button>
+          <button onclick="cancelClientBooking('${staffObj.id}', '${dateStr}', ${hour})" class="px-4 py-2 rounded-xl bg-[#0f2942] hover:bg-[#1d6f8a] text-white text-xs font-bold">
+            予約を取り消す
+          </button>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    window.cancelClientBooking = function(staffId, dateStr, hour) {
+      const key = `${staffId}_${dateStr}_${hour}`;
+      scheduleSlots[key] = {
+        staffId,
+        date: dateStr,
+        hour,
+        status: 'available',
+        updatedAt: new Date().toISOString()
+      };
+      saveScheduleToStorage();
+      closeSlotModal();
+      renderCalendarDashboard();
+      showToast('予約を取り消し、グリーン「予約可能」に戻しました', 'info');
+    };
+
+    function openAdminSlotModal(staffObj, dateStr, hour, slot) {
+      const modal = document.getElementById('slot-modal');
+      const currentStatus = slot ? slot.status : 'empty';
+      document.getElementById('slot-modal-header').className = 'px-6 py-4 bg-[#0f2942] text-white flex justify-between items-center';
+      document.getElementById('slot-modal-title').textContent = '【管理者権限】スケジュール枠 編集・確定';
+
+      document.getElementById('slot-modal-content').innerHTML = `
+        <div class="bg-slate-100 border border-slate-200 rounded-xl p-3.5 text-xs space-y-1 text-slate-800">
+          <p><span class="font-bold">担当スタッフ：</span>${staffObj.name}（${staffObj.areaLabel}）</p>
+          <p><span class="font-bold">日時：</span>${dateStr} ${String(hour).padStart(2, '0')}:00〜${String(hour + 1).padStart(2, '0')}:00</p>
+          <p><span class="font-bold">現在のステータス：</span>${
+            currentStatus === 'empty' ? '未登録' :
+            currentStatus === 'available' ? '予約可能（グリーン）' :
+            currentStatus === 'booked' ? '予約済み（レッド）' : '確定（管理者のみ変更可）'
+          }</p>
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">ステータス変更</label>
+            <select id="admin-status-select" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold bg-white">
+              <option value="empty" ${currentStatus === 'empty' ? 'selected' : ''}>未登録（枠を削除）</option>
+              <option value="available" ${currentStatus === 'available' ? 'selected' : ''}>予約可能（グリーン）</option>
+              <option value="booked" ${currentStatus === 'booked' ? 'selected' : ''}>予約済み（レッド）</option>
+              <option value="confirmed" ${currentStatus === 'confirmed' ? 'selected' : ''}>確定（管理者のみ変更可能にロック）</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">予約顧客（予約済み・確定の場合）</label>
+            <select id="admin-client-select" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white">
+              <option value="client01" ${slot?.clientId === 'client01' ? 'selected' : ''}>豊洲レジデンス管理様（client01）</option>
+              <option value="client02" ${slot?.clientId === 'client02' ? 'selected' : ''}>河口湖ヴィラオーナー様（client02）</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">物件名・作業内容メモ</label>
+            <input id="admin-note-input" type="text" value="${slot?.note || ''}" placeholder="物件名・作業指示を入力" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm">
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-between items-center gap-2 pt-3 border-t border-slate-100">
+          ${currentStatus === 'booked' ? `
+            <button onclick="adminQuickConfirm('${staffObj.id}', '${dateStr}', ${hour})" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 text-xs font-extrabold shadow-sm">
+              <i class="fa-solid fa-check-double mr-1"></i>確定する
+            </button>
+          ` : '<div></div>'}
+          <div class="flex gap-2">
+            <button onclick="closeSlotModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50">閉じる</button>
+            <button onclick="saveAdminSlotChanges('${staffObj.id}', '${dateStr}', ${hour})" class="px-5 py-2 rounded-xl bg-[#0f2942] hover:bg-[#1d6f8a] text-white text-xs font-bold">
+              保存する
+            </button>
+          </div>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    window.adminQuickConfirm = function(staffId, dateStr, hour) {
+      const key = `${staffId}_${dateStr}_${hour}`;
+      if (scheduleSlots[key]) {
+        scheduleSlots[key].status = 'confirmed';
+        scheduleSlots[key].updatedAt = new Date().toISOString();
+        saveScheduleToStorage();
+        closeSlotModal();
+        renderCalendarDashboard();
+        showToast('「確定」ステータスに更新しました（管理者以外は変更不可）', 'success');
+      }
+    };
+
+    window.saveAdminSlotChanges = function(staffId, dateStr, hour) {
+      const status = document.getElementById('admin-status-select').value;
+      const clientId = document.getElementById('admin-client-select').value;
+      const note = document.getElementById('admin-note-input').value.trim();
+      const key = `${staffId}_${dateStr}_${hour}`;
+
+      if (status === 'empty') {
+        delete scheduleSlots[key];
+      } else if (status === 'available') {
+        scheduleSlots[key] = {
+          staffId,
+          date: dateStr,
+          hour,
+          status: 'available',
+          updatedAt: new Date().toISOString()
+        };
+      } else {
+        const clientObj = ACCOUNTS[clientId];
+        scheduleSlots[key] = {
+          staffId,
+          date: dateStr,
+          hour,
+          status,
+          clientId,
+          clientName: clientObj ? clientObj.name : 'ご契約顧客様',
+          note: note || '管理者登録案件',
+          updatedAt: new Date().toISOString()
+        };
+      }
+
+      saveScheduleToStorage();
+      closeSlotModal();
+      renderCalendarDashboard();
+      showToast('管理者権限でスケジュールを更新しました', 'success');
+    };
+
+    window.closeSlotModal = function() {
+      document.getElementById('slot-modal').classList.add('hidden');
+    };
+
+    // ==================== 10. BOTTOM ACTIVITY LIST ====================
+    function renderActivityList() {
+      const container = document.getElementById('activity-list-container');
+      const countBadge = document.getElementById('activity-count-badge');
+      const titleEl = document.getElementById('activity-list-title');
+
+      let entries = Object.values(scheduleSlots);
+
+      if (currentUser.role === 'staff') {
+        titleEl.textContent = `${currentUser.name} の登録シフト・予約状況一覧`;
+        entries = entries.filter(s => s.staffId === currentUser.staffId);
+      } else if (currentUser.role === 'client') {
+        titleEl.textContent = `${currentUser.name} の予約済み・確定案件一覧`;
+        entries = entries.filter(s => s.clientId === currentUser.id);
+      } else {
+        titleEl.textContent = '全スタッフ 出勤・予約・確定ステータス一覧';
+      }
+
+      entries.sort((a, b) => `${a.date}_${String(a.hour).padStart(2, '0')}`.localeCompare(`${b.date}_${String(b.hour).padStart(2, '0')}`));
+      countBadge.textContent = `${entries.length}件`;
+
+      if (entries.length === 0) {
+        container.innerHTML = `<p class="py-6 text-center text-xs text-slate-400">該当するスケジュールデータはありません。</p>`;
+        return;
+      }
+
+      container.innerHTML = entries.map(item => {
+        const staff = STAFF_LIST.find(s => s.id === item.staffId);
+        let badgeHtml = '';
+        if (item.status === 'available') {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full bg-green-100 text-green-800 text-[11px] font-bold">予約可能</span>';
+        } else if (item.status === 'booked') {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full bg-red-100 text-red-700 text-[11px] font-bold">予約済み</span>';
+        } else {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full bg-[#0f2942] text-amber-300 text-[11px] font-bold"><i class="fa-solid fa-lock text-[9px] mr-1"></i>確定</span>';
+        }
+
+        return `
+          <div class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+            <div class="flex flex-wrap items-center gap-2.5">
+              ${badgeHtml}
+              <span class="font-mono font-bold text-[#0f2942]">${item.date} ${String(item.hour).padStart(2, '0')}:00〜</span>
+              <span class="font-bold text-slate-700">担当：${staff ? `${staff.name}（${staff.areaLabel}）` : item.staffId}</span>
+            </div>
+            <div class="flex items-center gap-3 text-slate-600">
+              ${item.clientName ? `<span class="font-semibold text-slate-800"><i class="fa-regular fa-building mr-1"></i>${item.clientName}</span>` : ''}
+              ${item.note ? `<span class="text-slate-500">（${item.note}）</span>` : ''}
+              ${currentUser.role === 'admin' && item.status === 'booked' ? `
+                <button onclick="adminQuickConfirm('${item.staffId}', '${item.date}', ${item.hour})" class="px-2.5 py-1 rounded bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-[11px]">
+                  確定する
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ==================== 11. TOAST NOTIFICATION ====================
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const colors = {
+        success: 'bg-[#0f2942] border-emerald-400 text-white',
+        error: 'bg-[#dc2626] border-red-300 text-white',
+        info: 'bg-slate-800 border-slate-600 text-white'
+      };
+      const icons = {
+        success: '<i class="fa-solid fa-circle-check text-emerald-400"></i>',
+        error: '<i class="fa-solid fa-circle-exclamation text-white"></i>',
+        info: '<i class="fa-solid fa-circle-info text-sky-300"></i>'
+      };
+
+      toast.className = `pointer-events-auto px-4 py-3 rounded-xl border shadow-xl text-xs font-bold flex items-center gap-2.5 fade-in ${colors[type] || colors.info}`;
+      toast.innerHTML = `${icons[type] || icons.info}<span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    // ==================== 12. INITIALIZE ON LOAD ====================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadScheduleFromStorage();
+      filterWorks('all');
+      renderNotices();
+    });
+  </script>
+</body>
+</html>
