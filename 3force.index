@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スリーフォース株式会社 | For your comfortable life - 不動産管理・修繕・清掃・民泊代行</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans JP & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"Inter"', 'sans-serif'],
+            mono: ['"Inter"', 'monospace'],
+          },
+          colors: {
+            tf: {
+              navy: '#0f2942',
+              navyDark: '#091a2b',
+              teal: '#1d6f8a',
+              tealLight: '#e6f2f5',
+              ivory: '#faf9f6',
+              gold: '#c59b27'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      background-color: #faf9f6;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+    .calendar-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+    .calendar-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+    .calendar-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .calendar-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .fade-in { animation: fadeIn 0.25s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Paste site body content into this file; this is where the full submitted HTML would continue. -->
+</body>
+</html>
